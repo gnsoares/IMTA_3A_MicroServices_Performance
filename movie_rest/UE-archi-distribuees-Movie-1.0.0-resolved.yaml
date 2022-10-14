@@ -131,6 +131,32 @@ paths:
           description: item deleted
         "400":
           description: ID not found
+  /movies/filtered:
+    get:
+      tags:
+        - developers
+      summary: get all movies equal or above a rating
+      operationId: get_movies_filtered
+      description: |
+        By passing a rating as a query parameter, you can find movies equal or above a rating
+      parameters:
+        - in: query
+          name: rating
+          description: rating threshold
+          required: true
+          schema:
+            type: number
+            minimum: 0
+            maximum: 10
+      responses:
+        "200":
+          description: Movie items with rating equal or above threshold
+          content:
+            application/json:
+              schema:
+                $ref: "#/components/schemas/AllMovies"
+        "400":
+          description: bad rating parameter
   /titles:
     get:
       tags:
@@ -186,7 +212,7 @@ paths:
         schema:
           maximum: 10
           minimum: 0
-          type: integer
+          type: number
       responses:
         "200":
           description: rate updated
@@ -212,8 +238,8 @@ components:
           type: string
           example: The Martian
         rating:
-          type: string
-          example: "7"
+          type: number
+          example: 7.4
         director:
           type: string
           example: Paul McGuigan
