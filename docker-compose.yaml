@@ -38,3 +38,5 @@ services:
       - ./results:/app/results
   nginx_test:
     build: ./nginx_test/
+    depends_on:
+      - nginx
