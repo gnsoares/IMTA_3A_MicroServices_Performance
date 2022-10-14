@@ -36,3 +36,5 @@ services:
       - movie_graphql
     volumes:
       - ./results:/app/results
+  nginx_test:
+    build: ./nginx_test/
